@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import NavigationBar from '../../shared/Header/NavigationBar';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, replace, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 
 const Login = () => {
 
     const { loginUser, resetPassByEmail } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -18,7 +21,7 @@ const Login = () => {
         loginUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 console.log(error.message);

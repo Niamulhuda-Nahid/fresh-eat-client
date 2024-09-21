@@ -2,14 +2,15 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 import { AuthContext } from '../../../provider/AuthProvider';
+import ActiveLink from './ActiveLink/ActiveLink';
 
 const NavigationBar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logOut()
             .then(() => {
-                console.log('sighOut succes')
+
             })
             .catch(error => {
                 console.log(error.message)
@@ -26,12 +27,12 @@ const NavigationBar = () => {
             <div className="flex-none">
                 <div className='mr-20'>
                     <nav className=''>
-                        <NavLink to='/' className='mr-4'>Home</NavLink>
-                        <NavLink className=''>Blogs</NavLink>
+                        <ActiveLink to='/' >Home</ActiveLink>
+                        <ActiveLink to='/blogs'>Blogs</ActiveLink>
                     </nav>
 
                 </div>
-                {user ? <div className="dropdown dropdown-end">
+                {user ?  <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={user.displayName}>
                         <div className="w-10 rounded-full">
                             <img

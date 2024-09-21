@@ -10,19 +10,23 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     // crate user by email
     const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
+        setLoading(false)
+        return createUserWithEmailAndPassword(auth, email, password); 
     }
 
     // login user
     const loginUser = (email, password) => {
+        setLoading(false)
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     // logOut user
     const logOut = () => {
+        setLoading(false)
         return signOut(auth)
     }
 
@@ -44,7 +48,8 @@ const AuthProvider = ({ children }) => {
     // observe user
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
+            setUser(currentUser);
+            setLoading(false)
         })
         return () => {
             unsubscribe();
@@ -61,6 +66,7 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         sedverificationEmail,
         resetPassByEmail,
+        loading
     }
 
     return (

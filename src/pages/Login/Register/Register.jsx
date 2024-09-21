@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavigationBar from '../../shared/Header/NavigationBar';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../../provider/AuthProvider';
@@ -8,6 +8,7 @@ const Register = () => {
     
     const { createUser, updateUserProfile, sedverificationEmail } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleCreateUser = event => {
         event.preventDefault();
@@ -45,7 +46,7 @@ const Register = () => {
                         
                     })
                 setError('')
-
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message)
