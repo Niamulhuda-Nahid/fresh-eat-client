@@ -6,7 +6,7 @@ const FastFood = () => {
     const [fastFoods, setFastFoods] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/fast-food')
+        fetch('https://fresh-eat-server.vercel.app/fast-food')
         .then(res=> res.json())
         .then(data=> setFastFoods(data));
     }, [])

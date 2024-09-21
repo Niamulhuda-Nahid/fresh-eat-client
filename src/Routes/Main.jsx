@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             {
                 path: '/recipes/:id',
                 element: <PrivateRoute><ChefRecipes></ChefRecipes></PrivateRoute>,
-                loader: ({ params }) => { return fetch(`http://localhost:5000/chef/${params.id}`) }
+                loader: ({ params }) => { return fetch(`https://fresh-eat-server.vercel.app/chef/${params.id}`) }
             },
             {
                 path: '/blogs',
