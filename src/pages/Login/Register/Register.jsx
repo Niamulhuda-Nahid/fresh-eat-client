@@ -3,12 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import NavigationBar from '../../shared/Header/NavigationBar';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../../provider/AuthProvider';
+import useTitle from '../../../hooks/TitleHook/useTitle';
 
 const Register = () => {
     
     const { createUser, updateUserProfile, sedverificationEmail } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    useTitle('Register')
 
     const handleCreateUser = event => {
         event.preventDefault();

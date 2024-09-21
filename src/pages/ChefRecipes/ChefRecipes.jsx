@@ -2,11 +2,12 @@ import React from 'react';
 import { BiSolidLike } from 'react-icons/bi';
 import { useLoaderData } from 'react-router-dom';
 import RecipesCard from './RecipesCard/RecipesCard';
+import useTitle from '../../hooks/TitleHook/useTitle';
 
 const ChefRecipes = () => {
     const chefs = useLoaderData();
     const { id, name, img_url, likes, number_of_recipes, years_of_experience, description, recipes } = chefs;
-    
+    useTitle('Chef')
     return (
         <div className='container mx-auto'>
             <div className=' container mx-auto flex items-center py-16 '>

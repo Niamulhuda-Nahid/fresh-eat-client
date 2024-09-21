@@ -3,6 +3,7 @@ import NavigationBar from '../../shared/Header/NavigationBar';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, replace, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
+import useTitle from '../../../hooks/TitleHook/useTitle';
 
 const Login = () => {
 
@@ -10,6 +11,8 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
+
+    useTitle('Login')
 
     const handleLogin = (event) => {
         event.preventDefault()
